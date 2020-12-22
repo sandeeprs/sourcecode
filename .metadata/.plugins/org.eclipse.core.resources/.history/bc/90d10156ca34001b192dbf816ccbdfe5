@@ -1,0 +1,71 @@
+package com.luv2code.demo;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.luv2code.entity.Instructor;
+import com.luv2code.entity.InstructorDetail;
+
+public class CreateStudentDemo {
+
+public static void main(String[] args) {
+		
+		System.out.println("** Inside Main Class **");
+		
+		SessionFactory factory = new Configuration()
+								.configure()
+								.addAnnotatedClass(InstructorDetail.class)
+								.addAnnotatedClass(Instructor.class)
+								.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		
+		Instructor instructor = new Instructor("Sandeep","Sharma","sharma@sharma.com");		
+		InstructorDetail instructorDetail = new InstructorDetail("sharma@youtube.com","BodyBuilding");
+		
+		/*
+		 * Instructor instructor2 = new Instructor("Rakesh","Boga","boga@sharma.com");
+		 * InstructorDetail instructorDetail2 = new
+		 * InstructorDetail("boga@youtube.com","Flirting");
+		 * 
+		 * Instructor instructor3 = new Instructor("Sonali","gupta","gupta@sharma.com");
+		 * InstructorDetail instructorDetail3 = new
+		 * InstructorDetail("gupta@youtube.com","Cooking");
+		 * 
+		 * Instructor instructor4 = new
+		 * Instructor("Amala","Gajengi","gajenji@sharma.com"); InstructorDetail
+		 * instructorDetail4 = new InstructorDetail("gajengi@youtube.com","Crying");
+		 * 
+		 * Instructor instructor5 = new Instructor("Amit","Yadav","yadav@sharma.com");
+		 * InstructorDetail instructorDetail5 = new
+		 * InstructorDetail("yadav@youtube.com","Deployment");
+		 */
+		
+		instructor.setInstructorDetail(instructorDetail);
+		/*
+		 * instructor2.setInstructorDetail(instructorDetail2);
+		 * instructor3.setInstructorDetail(instructorDetail3);
+		 * instructor4.setInstructorDetail(instructorDetail4);
+		 * instructor5.setInstructorDetail(instructorDetail5);
+		 */
+		
+		session.beginTransaction();
+		
+		System.out.println("** Saving the Instructor **");
+		
+		//insert into the database
+		session.persist(instructor);
+		/*
+		 * session.persist(instructor2); session.persist(instructor3);
+		 * session.persist(instructor4); session.persist(instructor5);
+		 */
+		
+		session.getTransaction().commit();
+		
+		System.out.println("** at the end **");
+
+	}
+
+
+}

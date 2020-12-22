@@ -1,0 +1,4 @@
+INDEX VERSION 1.4+D:\Desktop\practiseworkspace\November\hibernate-tutorial-03\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2889597561.index
+760146266.index
+3293030906.index
